@@ -9887,3 +9887,44 @@ body,
   max-height: calc(100% - 32px);
   overflow: hidden;
 }
+
+
+.auth-brand strong {
+  color: #ffffff;
+}
+
+.auth-brand span {
+  color: #e2e8f0;
+}
+
+.auth-label {
+  color: #5145e5;
+}
+
+.auth-card h1 {
+  color: #111827;
+}
+
+.auth-description {
+  color: #334155;
+}
+
+.auth-field label {
+  color: #111827;
+}
+
+.auth-input input {
+  color: #111827;
+}
+
+.auth-footer span {
+  color: #334155;
+}
+
+.auth-footer a {
+  color: #4f46e5;
+}
+
+.auth-system-status {
+  color: #e2e8f0;
+}
