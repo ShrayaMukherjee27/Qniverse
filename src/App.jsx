@@ -1,3 +1,4 @@
+
 import {
   BrowserRouter,
   Navigate,
@@ -11,6 +12,8 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Sidebar from "./components/Sidebar";
 
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Subjects from "./pages/Subjects";
 import Upload from "./pages/Upload";
@@ -22,27 +25,43 @@ import Progress from "./pages/Progress";
 import GameLab from "./pages/GameLab";
 
 function AppLayout() {
-  const location =
-    useLocation();
+  const location = useLocation();
+
+  const isAuthPage =
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
 
   const isOverview =
-    location.pathname ===
-    "/dashboard";
+    location.pathname === "/" ||
+    location.pathname === "/dashboard";
 
   return (
     <div className="app">
-      {!isOverview && (
-        <Sidebar />
-      )}
+      {!isAuthPage && !isOverview && <Sidebar />}
 
       <main
         className={
-          isOverview
-            ? "main-content overview-content"
+          isAuthPage || isOverview
+            ? "main-content full-content"
             : "main-content"
         }
       >
         <Routes>
+          <Route
+            path="/"
+            element={<Navigate to="/dashboard" replace />}
+          />
+
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+
+          <Route
+            path="/signup"
+            element={<Signup />}
+          />
+
           <Route
             path="/dashboard"
             element={
@@ -126,12 +145,7 @@ function AppLayout() {
 
           <Route
             path="*"
-            element={
-              <Navigate
-                to="/dashboard"
-                replace
-              />
-            }
+            element={<Navigate to="/" replace />}
           />
         </Routes>
       </main>

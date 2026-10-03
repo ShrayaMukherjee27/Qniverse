@@ -12,6 +12,8 @@ import {
 
 import { auth } from "../services/firebase";
 
+import universe from "../assets/universe.jpg";
+
 function Login() {
   const navigate = useNavigate();
 
@@ -65,7 +67,15 @@ function Login() {
 
   return (
     <div className="auth-page">
-      <div className="auth-background">
+      <div
+        className="auth-background"
+        style={{
+          backgroundImage: `linear-gradient(rgba(10, 15, 35, 0.2), rgba(10, 15, 35, 0.25)), url(${universe})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
         <div className="auth-grid" />
         <div className="auth-orbit orbit-one" />
         <div className="auth-orbit orbit-two" />
@@ -74,7 +84,7 @@ function Login() {
       <div className="auth-shell">
         <div className="auth-brand">
           <div className="auth-logo">
-            E
+            Q
           </div>
 
           <div>

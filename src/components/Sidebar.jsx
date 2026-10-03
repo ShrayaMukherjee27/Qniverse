@@ -23,7 +23,7 @@ import { useTheme } from "../context/ThemeContext";
 const menuItems = [
   {
     name: "Overview",
-    path: "/",
+    path: "/dashboard",
     icon: LayoutDashboard
   },
   {
@@ -43,7 +43,7 @@ const menuItems = [
   },
   {
     name: "Concept Graph",
-    path: "/graph",
+    path: "/concept-graph",
     icon: Network
   },
   {

@@ -1,0 +1,377 @@
+.qstar-floating {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 82px;
+  height: 82px;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #f0efff);
+  box-shadow:
+    0 18px 45px rgba(72, 73, 199, 0.2),
+    0 4px 14px rgba(30, 35, 70, 0.1);
+  cursor: pointer;
+  z-index: 999;
+  padding: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qstar-floating:hover {
+  transform: translateY(-7px) scale(1.04);
+  box-shadow:
+    0 25px 55px rgba(72, 73, 199, 0.27),
+    0 5px 18px rgba(30, 35, 70, 0.12);
+}
+
+.qstar-floating img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.qstar-floating-label {
+  position: absolute;
+  right: 2px;
+  bottom: -9px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: #171a42;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.qstar-sparkle {
+  position: absolute;
+  color: #6b5ce7;
+  z-index: 2;
+  font-size: 14px;
+  animation: qstarSparkle 2s ease-in-out infinite;
+}
+
+.sparkle-one {
+  top: -7px;
+  left: 8px;
+}
+
+.sparkle-two {
+  right: -5px;
+  top: 15px;
+  animation-delay: 0.7s;
+}
+
+@keyframes qstarSparkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.8) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(20deg);
+  }
+}
+
+.qstar-panel {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 390px;
+  max-width: calc(100vw - 32px);
+  height: 650px;
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(91, 92, 226, 0.15);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 35px 90px rgba(28, 32, 80, 0.22),
+    0 10px 30px rgba(50, 55, 100, 0.08);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  animation: qstarOpen 0.35s ease;
+}
+
+@keyframes qstarOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.qstar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 16px;
+  background: linear-gradient(135deg, #171a42, #292b67);
+  color: white;
+}
+
+.qstar-header-character {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: #f4ed87;
+}
+
+.qstar-header-character img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.qstar-header-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.qstar-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.qstar-name span {
+  color: #f4ed87;
+}
+
+.qstar-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 10px;
+}
+
+.qstar-status span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5ee6a8;
+  box-shadow: 0 0 8px #5ee6a8;
+}
+
+.qstar-close {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+}
+
+.qstar-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.qstar-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+}
+
+.qstar-welcome {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 17px;
+  padding: 13px;
+  border-radius: 18px;
+  background: #f7f7ff;
+}
+
+.qstar-welcome img {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.qstar-welcome strong {
+  display: block;
+  color: #1c2050;
+  font-size: 13px;
+}
+
+.qstar-welcome p {
+  margin: 4px 0 0;
+  color: #7a8497;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.qstar-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.qstar-message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+}
+
+.qstar-message-row.user {
+  justify-content: flex-end;
+}
+
+.qstar-message-row img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.qstar-message {
+  max-width: 82%;
+  padding: 10px 12px;
+  border-radius: 15px 15px 15px 4px;
+  background: #f1f1ff;
+  color: #292d4e;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.qstar-message-row.user .qstar-message {
+  border-radius: 15px 15px 4px 15px;
+  background: #5b5ce2;
+  color: white;
+}
+
+.qstar-section-title {
+  margin-bottom: 10px;
+  color: #33385b;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.qstar-suggestions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.qstar-suggestions button {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px;
+  border: 1px solid #e5e5f4;
+  border-radius: 14px;
+  background: white;
+  color: #3a3e62;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.qstar-suggestions button:hover {
+  border-color: #b9b9f2;
+  background: #f7f7ff;
+  transform: translateY(-2px);
+}
+
+.qstar-suggestions svg {
+  flex-shrink: 0;
+  color: #6566df;
+}
+
+.qstar-suggestions .qstar-surprise {
+  grid-column: 1 / -1;
+  justify-content: center;
+  background: linear-gradient(135deg, #171a42, #363981);
+  border-color: transparent;
+  color: white;
+  text-align: center;
+}
+
+.qstar-suggestions .qstar-surprise svg {
+  color: #f4ed87;
+}
+
+.qstar-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #ececf5;
+  background: white;
+}
+
+.qstar-input-area input {
+  min-width: 0;
+  flex: 1;
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #e2e2ee;
+  border-radius: 13px;
+  outline: none;
+  background: #f8f8fc;
+  color: #292d4e;
+  font-size: 11px;
+}
+
+.qstar-input-area input:focus {
+  border-color: #7778df;
+  background: white;
+}
+
+.qstar-input-area button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 13px;
+  background: #5b5ce2;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.qstar-input-area button:hover {
+  background: #4849c7;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .qstar-floating {
+    right: 18px;
+    bottom: 18px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .qstar-panel {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+    height: calc(100vh - 24px);
+    max-height: none;
+    border-radius: 23px;
+  }
+}
