@@ -2603,7 +2603,7 @@ background-repeat: no-repeat;
   padding: 34px;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.65);
   box-shadow:
     0 24px 70px rgba(23, 32, 51, 0.08),
     0 0 0 1px rgba(255, 255, 255, 0.8);
@@ -9809,7 +9809,6 @@ body:has(.auth-page),
   width: 100%;
   height: 100%;
   margin: 0;
-  overflow: hidden;
 }
 
 body:has(.auth-page) .app,
@@ -9819,7 +9818,6 @@ body:has(.auth-page) .main-content {
   min-height: 0;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 .auth-page {
@@ -9861,7 +9859,7 @@ body,
   width: 100%;
   height: 100%;
   margin: 0;
-  overflow: hidden;
+
 }
 
 .full-content {
@@ -9870,7 +9868,6 @@ body,
   height: 100%;
   min-height: 0;
   margin-left: 0;
-  overflow: hidden;
 }
 
 .auth-page {
@@ -9927,4 +9924,94 @@ body,
 
 .auth-system-status {
   color: #e2e8f0;
+}
+
+
+.auth-card {
+  max-height: 65vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.auth-card::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.main-content,
+.main-content.full-content,
+.main-content.overview-content {
+  height: auto !important;
+  min-height: 100vh;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main-content::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  height: auto;
+  overflow-x: clip;
+  overflow-y: auto;
+}
+
+.app {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+.main-content {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+.overview-content {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+.overview-page {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+
+html,
+body,
+#root {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar {
+  display: none;
+}
+
+.main-content,
+.full-content,
+.overview-page {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main-content::-webkit-scrollbar,
+.full-content::-webkit-scrollbar,
+.overview-page::-webkit-scrollbar {
+  display: none;
 }

@@ -8,7 +8,8 @@
     ),
     #f8f9ff;
   color: #191d4c;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .overview-nav {
@@ -271,7 +272,8 @@
 .overview-canvas {
   position: relative;
   width: min(1180px, 100%);
-  height: 925px;
+  min-height: 925px;
+  height: auto;
   margin: 34px auto 0;
 }
 

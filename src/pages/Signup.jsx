@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -11,7 +12,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile
 } from "firebase/auth";
-
+import universe from "../assets/universe.jpg";
 import { auth } from "../services/firebase";
 
 function Signup() {
@@ -20,30 +21,21 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] =
-    useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSignup(event) {
     event.preventDefault();
-
     setError("");
 
-    if (
-      !name.trim() ||
-      !email.trim() ||
-      !password ||
-      !confirmPassword
-    ) {
+    if (!name.trim() || !email.trim() || !password || !confirmPassword) {
       setError("Please fill in all fields.");
       return;
     }
 
     if (password.length < 6) {
-      setError(
-        "Password must contain at least 6 characters."
-      );
+      setError("Password must contain at least 6 characters.");
       return;
     }
 
@@ -55,38 +47,26 @@ function Signup() {
     try {
       setLoading(true);
 
-      const credential =
-        await createUserWithEmailAndPassword(
-          auth,
-          email.trim(),
-          password
-        );
-
-      await updateProfile(
-        credential.user,
-        {
-          displayName: name.trim()
-        }
+      const credential = await createUserWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password
       );
 
-      navigate("/");
+      await updateProfile(credential.user, {
+        displayName: name.trim()
+      });
+
+      navigate("/dashboard");
     } catch (signupError) {
-      if (
-        signupError.code ===
-        "auth/email-already-in-use"
-      ) {
-        setError(
-          "An account with this email already exists."
-        );
-      } else if (
-        signupError.code ===
-        "auth/invalid-email"
-      ) {
+      if (signupError.code === "auth/email-already-in-use") {
+        setError("An account with this email already exists.");
+      } else if (signupError.code === "auth/invalid-email") {
         setError("Please enter a valid email.");
+      } else if (signupError.code === "auth/weak-password") {
+        setError("Please choose a stronger password.");
       } else {
-        setError(
-          "Unable to create your account."
-        );
+        setError("Unable to create your account.");
       }
     } finally {
       setLoading(false);
@@ -95,18 +75,19 @@ function Signup() {
 
   return (
     <div className="auth-page">
-      <div className="auth-background">
-        <div className="auth-grid" />
-        <div className="auth-orbit orbit-one" />
-        <div className="auth-orbit orbit-two" />
-      </div>
+      <div
+        className="auth-background"
+        style={{
+          backgroundImage: `url(${universe})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      />
 
       <div className="auth-shell">
         <div className="auth-brand">
-          <div className="auth-logo">
-            E
-          </div>
-
+          <div className="auth-logo">Q</div>
           <div>
             <strong>Qniverse</strong>
             <span>Universe of Questions</span>
@@ -118,35 +99,25 @@ function Signup() {
             <div className="auth-icon">
               <Brain size={22} />
             </div>
-
-            <span className="auth-label">
-              CREATE YOUR WORKSPACE
-            </span>
+            <span className="auth-label">CREATE YOUR WORKSPACE</span>
           </div>
 
-          <h1>
-            Start analyzing.
-          </h1>
+          <h1>Start analyzing.</h1>
 
           <p className="auth-description">
-            Create your Qniverse account and turn
-            your PYQs into exam intelligence.
+            Create your Qniverse account and turn your PYQs into exam intelligence.
           </p>
 
           <form onSubmit={handleSignup}>
             <div className="auth-field">
               <label>Name</label>
-
               <div className="auth-input">
                 <User size={17} />
-
                 <input
                   type="text"
                   placeholder="Your name"
                   value={name}
-                  onChange={(event) =>
-                    setName(event.target.value)
-                  }
+                  onChange={(event) => setName(event.target.value)}
                   disabled={loading}
                 />
               </div>
@@ -154,17 +125,13 @@ function Signup() {
 
             <div className="auth-field">
               <label>Email</label>
-
               <div className="auth-input">
                 <Mail size={17} />
-
                 <input
                   type="email"
                   placeholder="you@example.com"
                   value={email}
-                  onChange={(event) =>
-                    setEmail(event.target.value)
-                  }
+                  onChange={(event) => setEmail(event.target.value)}
                   disabled={loading}
                 />
               </div>
@@ -172,19 +139,13 @@ function Signup() {
 
             <div className="auth-field">
               <label>Password</label>
-
               <div className="auth-input">
                 <Lock size={17} />
-
                 <input
                   type="password"
                   placeholder="Minimum 6 characters"
                   value={password}
-                  onChange={(event) =>
-                    setPassword(
-                      event.target.value
-                    )
-                  }
+                  onChange={(event) => setPassword(event.target.value)}
                   disabled={loading}
                 />
               </div>
@@ -192,53 +153,29 @@ function Signup() {
 
             <div className="auth-field">
               <label>Confirm Password</label>
-
               <div className="auth-input">
                 <Lock size={17} />
-
                 <input
                   type="password"
                   placeholder="Repeat your password"
                   value={confirmPassword}
-                  onChange={(event) =>
-                    setConfirmPassword(
-                      event.target.value
-                    )
-                  }
+                  onChange={(event) => setConfirmPassword(event.target.value)}
                   disabled={loading}
                 />
               </div>
             </div>
 
-            {error && (
-              <div className="auth-error">
-                {error}
-              </div>
-            )}
+            {error && <div className="auth-error">{error}</div>}
 
-            <button
-              className="auth-submit"
-              type="submit"
-              disabled={loading}
-            >
-              {loading
-                ? "Creating account..."
-                : "Create Account"}
-
-              {!loading && (
-                <ArrowRight size={17} />
-              )}
+            <button className="auth-submit" type="submit" disabled={loading}>
+              {loading ? "Creating account..." : "Create Account"}
+              {!loading && <ArrowRight size={17} />}
             </button>
           </form>
 
           <div className="auth-footer">
-            <span>
-              Already have an account?
-            </span>
-
-            <Link to="/login">
-              Sign in
-            </Link>
+            <span>Already have an account?</span>
+            <Link to="/login">Sign in</Link>
           </div>
         </div>
 
